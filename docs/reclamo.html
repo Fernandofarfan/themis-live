@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THEMIS-LIVE · Caso R-001 — Reclamo resuelto con firma judicial</title>
+<style>
+  :root{
+    --paper:#efe7d5; --paper2:#f8f2e3; --paper3:#e7dcc5;
+    --ink:#241f18; --ink2:#4b4032; --muted:#786a56;
+    --rule:#c9b997; --rule2:#a08f6d;
+    --stamp:#7c2a22; --ok:#2f5a3a; --warn:#9a6a17;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;color:var(--ink);min-height:100vh;
+    font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+    background-color:var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg,rgba(60,45,25,.028) 0 1px,transparent 1px 4px),
+      radial-gradient(900px 500px at 12% 0%,rgba(255,252,242,.85) 0%,transparent 60%);
+  }
+  header{
+    display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;
+    padding:18px 30px 16px;background:var(--paper2);border-bottom:3px double var(--rule2);
+  }
+  .brand{display:flex;align-items:center;gap:16px}
+  .logo{
+    width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+    font-size:17px;font-weight:700;color:var(--stamp);
+    border:2px solid var(--stamp);box-shadow:inset 0 0 0 3px var(--paper2),inset 0 0 0 4px var(--stamp);
+    transform:rotate(-7deg);
+  }
+  .brand h1{font-size:22px;margin:0;letter-spacing:.6px;font-weight:700}
+  .brand h1 em{font-style:normal;color:var(--stamp)}
+  .brand p{margin:3px 0 0;font-size:10px;color:var(--muted);letter-spacing:1.9px;text-transform:uppercase}
+  .volver{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink2);
+    border:1px solid var(--rule2);padding:8px 12px;text-decoration:none;background:var(--paper)}
+  .volver:hover{border-color:var(--stamp);color:var(--stamp)}
+  main{max-width:880px;margin:0 auto;padding:28px 24px 60px}
+  .sello-caso{
+    display:inline-block;border:2px solid var(--stamp);color:var(--stamp);
+    padding:10px 16px;transform:rotate(-2deg);font-size:12px;letter-spacing:1.6px;
+    text-transform:uppercase;margin:6px 0 22px;box-shadow:2px 2px 0 rgba(36,31,24,.25);
+  }
+  h2{font-size:19px;border-bottom:1px solid var(--rule);padding-bottom:6px;margin:30px 0 12px;letter-spacing:.4px}
+  p{line-height:1.62;font-size:14.5px}
+  .card{background:var(--paper2);border:1px solid var(--rule2);padding:14px 16px;margin:10px 0}
+  .mono{font-family:"Consolas","Courier New",monospace;font-size:12.5px;word-break:break-all}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0 4px}
+  th{text-align:left;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);
+     border-bottom:2px solid var(--rule2);padding:6px 8px}
+  td{border-bottom:1px solid var(--rule);padding:7px 8px;vertical-align:top}
+  .ok{color:var(--ok);font-weight:700}
+  .hash{color:var(--muted);font-size:11px}
+  .foot{margin-top:36px;border-top:1px solid var(--rule);padding-top:12px;font-size:11px;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">T</div>
+    <div>
+      <h1>THEMIS<em>·</em>LIVE</h1>
+      <p>Mesa de situación federal</p>
+    </div>
+  </div>
+  <a class="volver" href="index.html">← Portal de auditoría</a>
+</header>
+
+<main>
+  <div class="sello-caso">Demo forzada · escenario de error inducido</div>
+
+  <h2>Qué pasó en el caso R-001</h2>
+  <p>
+    En la demo de ruta de reclamo se forzó un bloqueo por IP sobre un hosting compartido que
+    <strong>arrasaba con un sitio legítimo</strong> (<span class="mono">noticias-del-valle.test</span>,
+    “el diario no carga para lectores de varios proveedores”). El protocolo de THEMIS-LIVE respondió
+    como lo haría frente a un reclamo real: el juez de turno revisó el expediente,
+    <strong>levantó la orden con firma judicial</strong> a los 9.69 minutos de partido y la reemplazó
+    por un <strong>bloqueo quirúrgico por dominio</strong> sobre <span class="mono">live.golazo-libre.test</span>.
+    El sitio legítimo quedó liberado y la canalización pirata quedó bloqueada.
+  </p>
+
+  <h2>El reclamo, en datos</h2>
+  <div class="card">
+    <table>
+      <tr><th>Reclamo</th><td class="mono">R-001 · minuto 9.667 · proveedor aurora</td></tr>
+      <tr><th>Dominio afectado</th><td class="mono">noticias-del-valle.test</td></tr>
+      <tr><th>Orden levantada</th><td class="mono">demo-error-ip-01</td></tr>
+      <tr><th>Juez de turno</th><td>Dra. Laura Ficticia (<span class="mono">jueza-laura-ficticia</span> · Jg. de Garantías 3, juzgado ficticio)</td></tr>
+      <tr><th>Acción</th><td><strong>levantamiento firmado + bloqueo quirúrgico por dominio</strong></td></tr>
+      <tr><th>Estado</th><td class="ok">levantada y reemplazada</td></tr>
+      <tr><th>Firma del levantamiento</th><td class="mono">88d8fc1dc7496ebd32df1170a52a4d4ca0bbf69dac35cf3c802fbbee4e186856</td></tr>
+    </table>
+  </div>
+
+  <h2>Cadena de auditoría (extracto del ledger)</h2>
+  <table>
+    <thead><tr><th>Seq</th><th>Min</th><th>Evento</th><th>Detalle</th><th>Hash</th></tr></thead>
+    <tbody>
+      <tr><td>11</td><td>6.03</td><td>orden_emitida</td><td>EXP-2026-0002 · dominio live.golazo-libre.test · x4 proveedores</td><td class="hash">4c3a852f…</td></tr>
+      <tr><td>26</td><td>9.69</td><td>reclamo_resuelto</td><td>R-001 · levantamiento firmado + reemplazo por dominio</td><td class="hash">d15572a7…</td></tr>
+      <tr><td>27</td><td>9.69</td><td>orden_emitida</td><td>ord-0002-aurora-precisa · reemplazo quirúrgico</td><td class="hash">e45c994c…</td></tr>
+      <tr><td>28</td><td>9.69</td><td>orden_emitida</td><td>ord-0002-andina-precisa</td><td class="hash">85257adc…</td></tr>
+      <tr><td>29</td><td>9.69</td><td>orden_emitida</td><td>ord-0002-valle-precisa</td><td class="hash">d840d0bf…</td></tr>
+      <tr><td>30</td><td>9.69</td><td>orden_emitida</td><td>ord-0002-cumbre-precisa</td><td class="hash">857c9582…</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:var(--muted)">Extracto literal de <span class="mono">salida/demo_reclamo.json</span> y <span class="mono">salida/auditoria_demo_reclamo.jsonl</span>. Todo el ledger enlaza por hash encadenado (prev_hash → hash).</p>
+
+  <h2>Integridad del ledger</h2>
+  <div class="card">
+    <table>
+      <tr><th>Eventos en cadena</th><td>45</td></tr>
+      <tr><th>Verificación</th><td class="ok">íntegro ✓</td></tr>
+      <tr><th>Último hash</th><td class="mono hash">edf740226b81e187c508cea9afe50cc79a05279c667c47071ea8bd0d3b7965e0</td></tr>
+    </table>
+  </div>
+
+  <h2>Por qué importa</h2>
+  <p>
+    Un sistema que bloquea también <strong>desbloquea</strong>: cada orden puede caer, vencer o ser reemplazada
+    por una decisión judicial trazable. La demo sigue el mismo protocolo que el partido en vivo:
+    detección → orden firmada → vencimiento automático → auditoría encadenada → respuesta al reclamo.
+    En el partido de práctica (11/11) no hubo reclamos: la ruta se probó con esta demo forzada, y queda
+    documentada en el repositorio para que el jurado la reproduzca.
+  </p>
+
+  <div class="foot">
+    THEMIS-LIVE · Hackathon Argentina Space 2026 · Track Streaming / QualyData · datos y claves ficticios del simulador.<br>
+    Código y artefactos: <a href="https://github.com/Fernandofarfan/themis-live" style="color:inherit">github.com/Fernandofarfan/themis-live</a> · ledger demo: <span class="mono">salida/auditoria_demo_reclamo.jsonl</span>
+  </div>
+</main>
+</body>
+</html>
