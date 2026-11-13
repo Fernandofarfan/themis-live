@@ -7,6 +7,9 @@ Track: **QualyData · Streaming** — Hackathon Argentina Space 2026 (Salta, 11 
 Video demo (2:15, voz argentina):
 <https://github.com/Fernandofarfan/themis-live/releases/download/demo-video/THEMIS-LIVE-demo.mp4>
 
+Portal de auditoría (snapshot estático del partido de práctica): <https://fernandofarfan.github.io/themis-live/>
+Caso de reclamo resuelto con firma judicial (R-001): <https://fernandofarfan.github.io/themis-live/reclamo.html>
+
 ---
 
 ## Qué resuelve
@@ -99,6 +102,10 @@ bloqueos IP activos post-partido . 0
 órdenes rechazadas ............... 0
 órdenes fuera de turno ........... 0
 ```
+
+**Dos jueces, cambio de turno en el minuto 50.** El partido de práctica tenía dos jueces: Laura Ficticia (hasta el minuto 50, 17 órdenes firmadas) y Martín Ejemplo (desde el minuto 50 hasta el final, 14 órdenes firmadas). El motor consulta `GET /estado` antes de cada firma: **31/31 órdenes a HMAC-SHA256 del juez de turno vigente**, cero órdenes fuera de turno, verificado contra el registro de auditoría (`entrega/registro_auditoria.jsonl`).
+
+**Reclamo resuelto con firma judicial (demo forzada).** Se forzó un bloqueo por IP sobre un hosting compartido que arrastraba a un sitio legítimo; el sistema levantó la orden con firma del juez de turno y la reemplazó por un bloqueo por dominio (`salida/demo_reclamo.json`). Leé el caso completo: <https://fernandofarfan.github.io/themis-live/reclamo.html>
 
 ## Estado de entrega
 
