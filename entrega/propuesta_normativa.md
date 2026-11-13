@@ -2,6 +2,8 @@
 
 **Proyecto:** THEMIS-LIVE · Hackathon Argentina Space 2026
 
+**Marco legal aplicable.** El orden de bloqueo en vivo encuentra su base en el **art. 57 de la Ley 27.078** (deberes de los prestadores de servicios TIC) y opera bajo la doctrina **"Rodríguez, María Belén c/ Google Inc."** (CSJN, 28/10/2014): el intermediario no responde por contenidos de terceros sin orden judicial específica, y cuando media esa orden debe ejecutarla dentro del estándar técnico posible. Hoy esa ejecución llega por vías informales (Cámaras de proveedores, correo, teléfono) y sin trazabilidad; a los proveedores chicos no les alcanza. Este régimen formaliza el canal bajo control judicial permanente, tomando el modelo italiano (bloqueo AGCOM en 30 minutos, sin juez) y corrigiéndole el vicio conocido: ahí cayeron sitios legítimos; acá la orden nace en cabeza de un juez de turno con expediente digital y DNS pasivo como requisito de procedibilidad. El 1/11/2026, para el Superclásico, se pidió bloquear 182 dominios por una vía informal: el SFBD convierte ese esfuerzo en un procedimiento estándar, revisable y con cierre automático.
+
 ## 1. Objeto y orden marco con juez de turno digital
 
 Crear, por resolución conjunta de ENACOM, el Ministerio de Justicia y JUFEJUS, el **Sistema Federal de Bloqueo Dinámico en Vivo (SFBD)**. Antes de cada torneo o evento, el titular de derechos o la fiscalía especializada (UFEIC) solicita una **orden marco preventiva**. Durante la ventana horaria del evento, un **juez de turno conectado a la plataforma** valida en tiempo real las ampliaciones dinámicas de objetivos (IPs y dominios) con firma digital, preservando el control judicial en cada bloqueo sin demoras de horas.
@@ -24,3 +26,4 @@ Para llegar a la bandeja de firma del juez, el expediente digital debe acreditar
 - **Ejecución:** notificada la orden firmada por API, cada ISP confirma su aplicación en un máximo de **5 minutos**, con reintento automático ante fallas.
 - **Caducidad automática:** todo bloqueo por IP caduca de pleno derecho al finalizar el evento (minuto 105 / pitazo final); se prohíben los bloqueos permanentes de IPs dinámicas.
 - **Reclamos:** canal inmediato para titulares afectados. Verificada la colisión en DNS pasivo, el juez de turno firma el levantamiento en menos de 5 minutos y lo sustituye por un bloqueo de dominio, registrando el incidente en el **Portal Público de Transparencia**.
+- **Recurso:** el titular afectado tiene un plazo de **24 horas** para apelar ante el mismo juez de turno; si el DNS pasivo acreditó la colisión en el momento de la orden, la apelación tramita con efecto suspensivo de pleno derecho. Cada reclamo cerrado queda auditable públicamente en el Portal.
