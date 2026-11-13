@@ -97,6 +97,22 @@ bloqueos IP activos post-partido . 0
 órdenes fuera de turno ........... 0
 ```
 
+## Estado de entrega
+
+- **Repo:** `github.com/Fernandofarfan/themis-live`.
+- **`entrega/`** contiene el expediente, el registro de auditoría y la verificación del
+  **partido de práctica**. El partido final lo corre la organización con una instancia del
+  simulador por equipo; en cuanto esté la URL, se regenera con:
+
+  ```bash
+  python scripts/correr_partido_completo.py --url http://IP_DEL_SIMULADOR:8080
+  ```
+
+  y se vuelve a commitear `entrega/`.
+- **Cierre de entregas:** viernes 13 a las 13:00 (extendido desde las 10:00).
+- El juez firma solo mientras está de turno y lo pendiente pasa al juez entrante: el motor
+  consulta `GET /estado` antes de cada firma, así que ya cumple esa regla.
+
 ## Supuestos
 
 - El simulador es la única fuente de verdad y todos sus datos son ficticios.
