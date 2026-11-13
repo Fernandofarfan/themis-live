@@ -47,6 +47,8 @@ def main() -> int:
     ap.add_argument("--puerto", type=int, default=8080)
     ap.add_argument("--dashboard", type=int, default=8090)
     ap.add_argument("--sin-dashboard", action="store_true")
+    ap.add_argument("--reanudar", action="store_true",
+                    help="retoma el partido en curso: ledger NO se trunca y el motor reconstruye su estado desde la cadena")
     ap.add_argument("--timeout-real", type=float, default=1200.0)
     args = ap.parse_args()
 
@@ -78,9 +80,10 @@ def main() -> int:
         estado = esperar_simulador(url_sim)
         print(f"[THEMIS] simulador listo · fin_min={estado['fin_min']} · jueces={estado['jueces_de_turno']}", flush=True)
 
-        ledger = Ledger(config.SALIDA_DIR / "auditoria_themis.jsonl")
+        ledger = Ledger(config.SALIDA_DIR / "auditoria_themis.jsonl", reanudar=args.reanudar)
         cliente = SimClient(url_sim)
-        orch = ThemisOrchestrator(cliente, ledger, config.SALIDA_DIR / "expedientes.json")
+        orch = ThemisOrchestrator(cliente, ledger, config.SALIDA_DIR / "expedientes.json",
+                                  reanudar=args.reanudar)
         if not args.sin_dashboard:
             dashboard = Dashboard(orch, args.dashboard).start()
 

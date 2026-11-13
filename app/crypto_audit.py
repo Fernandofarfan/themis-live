@@ -53,14 +53,23 @@ class Ledger:
 
     GENESIS = "0" * 64
 
-    def __init__(self, ruta: Path) -> None:
+    def __init__(self, ruta: Path, reanudar: bool = False) -> None:
         self.ruta = Path(ruta)
         self.ruta.parent.mkdir(parents=True, exist_ok=True)
         self._lock = threading.Lock()
         self._prev = self.GENESIS
         self._seq = 0
         self._eventos = []
-        self.ruta.write_text("", encoding="utf-8")
+        if reanudar and self.ruta.exists() and self.ruta.stat().st_size > 0:
+            for linea in self.ruta.read_text(encoding="utf-8").splitlines():
+                if not linea.strip():
+                    continue
+                e = json.loads(linea)
+                self._eventos.append(e)
+                self._seq = int(e.get("seq", self._seq + 1))
+                self._prev = e.get("hash", self._prev)
+        else:
+            self.ruta.write_text("", encoding="utf-8")
 
     @property
     def ultimo_hash(self) -> str:

@@ -92,7 +92,7 @@ class Orden:
 
 class ThemisOrchestrator:
     def __init__(self, client: SimClient, ledger: Ledger, guardar_expedientes: Path,
-                 verbose: bool = True) -> None:
+                 verbose: bool = True, reanudar: bool = False) -> None:
         self.client = client
         self.ledger = ledger
         self.verbose = verbose
@@ -123,6 +123,24 @@ class ThemisOrchestrator:
         self._lock = threading.RLock()
         self._exportado = False
         self.contexto_extra = {}
+
+        if reanudar:
+            from . import resume
+            estado = resume.reconstruir(self.ledger.ruta)
+            self.detecciones_vistas = estado["detecciones_vistas"]
+            self.expediente_por_stream = estado["expediente_por_stream"]
+            self.fases = estado["fases"]
+            self.expedientes = estado["expedientes"]
+            self.ordenes = estado["ordenes"]
+            self.descartes_senal = estado["descartes_senal"]
+            self.descartes_licenciatario = estado["descartes_licenciatario"]
+            self.reclamos = estado["reclamos"]
+            self.reclamos_vistos = estado["reclamos_vistos"]
+            self.detecciones = [{"id": d} for d in self.detecciones_vistas]
+            if self.verbose:
+                print(f"[THEMIS] reanudacion: {len(self.expedientes)} expedientes, "
+                      f"{len(self.ordenes)} ordenes, {len(self.detecciones_vistas)} detecciones vistas",
+                      flush=True)
 
     # ------------------------------------------------------------------ helpers
     def log(self, msg: str) -> None:
