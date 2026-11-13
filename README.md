@@ -4,7 +4,7 @@
 
 Track: **QualyData · Streaming** — Hackathon Argentina Space 2026 (Salta, 11 al 13 de noviembre).
 
-Video demo (36 s, slideshow de capturas del dashboard):
+Video demo (2:15, voz argentina):
 <https://github.com/Fernandofarfan/themis-live/releases/download/demo-video/THEMIS-LIVE-demo.mp4>
 
 ---
