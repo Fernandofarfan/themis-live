@@ -32,6 +32,16 @@ from .detector_engine import (
 )
 
 
+def _num(x: Any, default: float = 0.0) -> float:
+    """Convierte a float de forma tolerante (None, strings con coma)."""
+    try:
+        if x is None:
+            return float(default)
+        return float(str(x).replace(",", ".").strip())
+    except Exception:
+        return float(default)
+
+
 class SimClient:
     def __init__(self, base: str, timeout: float = 6.0) -> None:
         self.base = base.rstrip("/")
@@ -45,7 +55,11 @@ class SimClient:
         )
         try:
             with urllib.request.urlopen(req, timeout=self.timeout) as resp:
-                return resp.status, json.loads(resp.read() or b"{}")
+                crudo = resp.read() or b"{}"
+                try:
+                    return resp.status, json.loads(crudo)
+                except Exception:
+                    return resp.status, {"error": "respuesta no JSON"}
         except urllib.error.HTTPError as err:
             try:
                 return err.code, json.loads(err.read() or b"{}")
@@ -101,7 +115,10 @@ class ThemisOrchestrator:
         self.ctx = ContextoPartido(self.partido)
         self.proveedores = client.get("/proveedores") or []
         self.juzgados = self._cargar_juzgados()
-        self.clientes_totales = sum(int(p.get("clientes", 0)) for p in self.proveedores)
+        try:
+            self.clientes_totales = sum(int(p.get("clientes") or 0) for p in self.proveedores)
+        except Exception:
+            self.clientes_totales = 0
 
         self.detecciones_vistas: set = set()
         self.detecciones: List[Dict[str, Any]] = []
@@ -123,6 +140,7 @@ class ThemisOrchestrator:
         self._lock = threading.RLock()
         self._exportado = False
         self.contexto_extra = {}
+        self._errores_internos: set = set()
 
         if reanudar:
             from . import resume
@@ -162,6 +180,9 @@ class ThemisOrchestrator:
     def _juez_de_turno(self) -> Tuple[Optional[Dict[str, Any]], Optional[Dict[str, Any]]]:
         estado = self.client.get("/estado") or {}
         turnos = estado.get("jueces_de_turno") or []
+        if isinstance(turnos, str):
+            turnos = [turnos]
+        turnos = [str(t) for t in turnos if t]
         if not turnos:
             return None, None
         self.jueces_ahora = list(turnos)
@@ -181,9 +202,13 @@ class ThemisOrchestrator:
 
     # --------------------------------------------------------------- detecciones
     def _procesar_lote(self, ahora: float) -> None:
-        lote = self.client.get(f"/detecciones?desde={self.ultimo_lote_min}") or {}
-        self.ultimo_lote_min = float(lote.get("minuto_actual", ahora))
-        for det in lote.get("detecciones", []):
+        lote = self.client.get(f"/detecciones?desde={self.ultimo_lote_min}")
+        if not isinstance(lote, dict):
+            lote = {}
+        self.ultimo_lote_min = _num(lote.get("minuto_actual"), ahora)
+        for det in (lote.get("detecciones") or []):
+            if not isinstance(det, dict):
+                continue
             det_id = det.get("id")
             if not det_id or det_id in self.detecciones_vistas:
                 continue
@@ -237,8 +262,10 @@ class ThemisOrchestrator:
             return
 
         # DNS pasivo → regla de daño colateral.
-        dns = self.client.get(f"/dns-pasivo?ip={ip}") or {}
-        decision = decidir_bloqueo(ip, host, dns.get("dominios", []))
+        dns = self.client.get(f"/dns-pasivo?ip={ip}")
+        if not isinstance(dns, dict):
+            dns = {}
+        decision = decidir_bloqueo(ip, host, dns.get("dominios") or [])
 
         juez, juzgado = self._juez_de_turno()
         if not juez or not juzgado:
@@ -377,7 +404,7 @@ class ThemisOrchestrator:
                 if estado == "aplicada" and not registro.confirmada:
                     registro.estado = "aplicada"
                     registro.confirmada = True
-                    registro.aplicada_min = float(item.get("aplicada_min") or ahora)
+                    registro.aplicada_min = _num(item.get("aplicada_min"), ahora)
                     self.ledger.registrar(
                         "orden_aplicada", registro.aplicada_min, proveedor=pid,
                         orden_id=oid, expediente_id=registro.expediente_id,
@@ -413,7 +440,7 @@ class ThemisOrchestrator:
                     )
                 elif estado in ("vencida", "levantada") and registro.estado != estado:
                     registro.estado = estado
-                    registro.finalizada_min = float(item.get("finalizada_min") or ahora)
+                    registro.finalizada_min = _num(item.get("finalizada_min"), ahora)
                     self.ledger.registrar(
                         f"orden_{estado}", registro.finalizada_min, proveedor=pid,
                         orden_id=oid, expediente_id=registro.expediente_id,
@@ -432,9 +459,13 @@ class ThemisOrchestrator:
         return False
 
     def _monitorear_reclamos(self, ahora: float) -> None:
-        lote = self.client.get(f"/reclamos?desde={self.ultimo_reclamo_min}") or {}
-        self.ultimo_reclamo_min = float(lote.get("minuto_actual", ahora))
-        for reclamo in lote.get("reclamos", []):
+        lote = self.client.get(f"/reclamos?desde={self.ultimo_reclamo_min}")
+        if not isinstance(lote, dict):
+            lote = {}
+        self.ultimo_reclamo_min = _num(lote.get("minuto_actual"), ahora)
+        for reclamo in (lote.get("reclamos") or []):
+            if not isinstance(reclamo, dict):
+                continue
             rid = reclamo.get("id")
             if not rid or rid in self.reclamos_vistos:
                 continue
@@ -487,7 +518,11 @@ class ThemisOrchestrator:
                 self._reemplazar_por_dominio(registro, juez, juzgado, ahora)
                 self.log(f"⚖ reclamo {rid} resuelto: {reclamo.get('dominio')}")
             else:
-                resultado["estado"] = f"error al levantar: {resp.get('error', http)}"
+                if isinstance(resp, dict):
+                    detalle = resp.get("error", http)
+                else:
+                    detalle = str(resp)
+                resultado["estado"] = f"error al levantar: {detalle}"
             self.reclamos.append(resultado)
 
     def _reemplazar_por_dominio(self, registro: Orden, juez: Dict[str, Any],
@@ -510,8 +545,11 @@ class ThemisOrchestrator:
         }
         if not self.clientes_totales:
             return 0.0
-        return round(100.0 * sum(int(self._proveedor(p).get("clientes", 0)) for p in pids)
-                     / self.clientes_totales, 1)
+        try:
+            total = sum(int(self._proveedor(p).get("clientes") or 0) for p in pids)
+        except Exception:
+            total = 0
+        return round(100.0 * total / self.clientes_totales, 1)
 
     def estado_dashboard(self) -> Dict[str, Any]:
         with self._lock:
@@ -579,16 +617,33 @@ class ThemisOrchestrator:
         inicio_real = time.time()
         try:
             while True:
-                estado = self.client.get("/estado") or {}
-                if not estado:
+                estado = self.client.get("/estado")
+                if not isinstance(estado, dict) or not estado:
                     time.sleep(0.2)
                     continue
                 with self._lock:
-                    self.minuto = float(estado.get("minuto_actual", self.minuto))
-                    self.jueces_ahora = list(estado.get("jueces_de_turno") or self.jueces_ahora)
-                self._procesar_lote(self.minuto)
-                self._monitorear_ordenes(self.minuto)
-                self._monitorear_reclamos(self.minuto)
+                    self.minuto = _num(estado.get("minuto_actual"), self.minuto)
+                    turno = estado.get("jueces_de_turno")
+                    if isinstance(turno, list) and turno:
+                        self.jueces_ahora = [str(t) for t in turno]
+                    elif isinstance(turno, str) and turno:
+                        self.jueces_ahora = [turno]
+                try:
+                    self._procesar_lote(self.minuto)
+                    self._monitorear_ordenes(self.minuto)
+                    self._monitorear_reclamos(self.minuto)
+                except Exception as exc:  # defensa ante escenario inesperado en la final
+                    firma = f"{type(exc).__name__}: {exc}"[:200]
+                    if firma not in self._errores_internos:
+                        self._errores_internos.add(firma)
+                        try:
+                            self.ledger.registrar(
+                                "error_interno", self.minuto,
+                                tipo=type(exc).__name__, detalle=str(exc)[:300],
+                            )
+                        except Exception:
+                            pass
+                        self.log(f"error interno recuperable: {firma}")
                 if self.minuto >= limite:
                     break
                 if timeout_real is not None and (time.time() - inicio_real) > timeout_real:
@@ -598,8 +653,11 @@ class ThemisOrchestrator:
                 time.sleep(config.POLL_SEGUNDOS)
         finally:
             self.finalizado = True
-            self.exportar()
-            self.log("corrida finalizada y artefactos exportados")
+            try:
+                self.exportar()
+                self.log("corrida finalizada y artefactos exportados")
+            except Exception as exc:
+                print(f"[THEMIS] ERROR al exportar artefactos: {exc}", flush=True)
 
     def exportar(self) -> None:
         if self._exportado:

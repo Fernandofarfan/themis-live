@@ -85,7 +85,11 @@ def main() -> int:
         orch = ThemisOrchestrator(cliente, ledger, config.SALIDA_DIR / "expedientes.json",
                                   reanudar=args.reanudar)
         if not args.sin_dashboard:
-            dashboard = Dashboard(orch, args.dashboard).start()
+            try:
+                dashboard = Dashboard(orch, args.dashboard).start()
+            except Exception as exc:
+                print(f"[THEMIS] dashboard deshabilitado ({exc}); el partido sigue sin UI", flush=True)
+                dashboard = None
 
         limite = float(orch.ctx.fin_min) + config.MARGEN_GRACIA_MIN + 0.5
         print(f"[THEMIS] operando hasta el minuto {limite:.1f} (aceleracion x{args.acelerar:g})", flush=True)
@@ -93,7 +97,12 @@ def main() -> int:
 
         # Dejar que el simulador escriba el cierre de ventana (minuto 110).
         time.sleep(0.6)
-        orch.minuto = float((cliente.get("/estado") or {}).get("minuto_actual", limite))
+        estado_fin = cliente.get("/estado")
+        if isinstance(estado_fin, dict):
+            try:
+                orch.minuto = float(estado_fin.get("minuto_actual") or limite)
+            except Exception:
+                orch.minuto = float(limite)
         orch.finalizado = True
         orch.exportar()
         print("[THEMIS] exportando entregables...", flush=True)

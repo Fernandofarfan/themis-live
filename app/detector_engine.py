@@ -71,7 +71,7 @@ class ContextoPartido:
             dominios = [d.lower() for d in lic.get("dominios_autorizados", [])]
             if any(pertenece_a(host, d) or pertenece_a(pagina, d) for d in dominios):
                 # Solo es legítimo si además la marca corresponde a su prefijo de licenciatario.
-                marca = deteccion.get("marca_de_agua_extraida", "")
+                marca = deteccion.get("marca_de_agua_extraida") or ""
                 if marca.startswith(lic.get("prefijo_marca", "\0")):
                     return lic
                 return lic
@@ -83,7 +83,7 @@ def decidir_bloqueo(
 ) -> Dict[str, Any]:
     """Aplica la regla de daño colateral y devuelve la decisión con su justificación."""
     base_pirata = dominio_base(host)
-    dominios = [d.lower() for d in dominios_en_ip]
+    dominios = [str(d).lower() for d in (dominios_en_ip or [])]
     ajenos = sorted(
         d for d in dominios if not pertenece_a(d, base_pirata) and dominio_base(d) != base_pirata
     )
