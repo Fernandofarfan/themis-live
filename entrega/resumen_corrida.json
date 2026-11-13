@@ -1,0 +1,169 @@
+{
+  "proyecto": "THEMIS-LIVE",
+  "partido": "Partido de práctica — Club Ficticio del Norte vs. Deportivo Ejemplo",
+  "resumen_motor": {
+    "detecciones": 43,
+    "descartes_senal": 2,
+    "descartes_licenciatario": 3,
+    "expedientes": 7,
+    "ordenes": 31,
+    "aplicadas": 28,
+    "reintentos": 3,
+    "reclamos": 0,
+    "integridad_ledger": {
+      "integro": true,
+      "eventos": 133,
+      "ultimo_hash": "a4cf5ff6d1cb4563edc40479f71cc31ffdd2eaec48ee2148ed51f4dcf3e2bec4"
+    }
+  },
+  "metricas_juez": {
+    "fases_piratas_bloqueadas": "7 de 7",
+    "visibilidad_residual_promedio_pct": 3.9,
+    "ordenes_recibidas": 31,
+    "ordenes_aplicadas": 28,
+    "ordenes_fallidas": 3,
+    "ordenes_rechazadas": 0,
+    "bloqueos_con_dano_colateral": 0,
+    "dominios_legitimos_afectados": 0,
+    "bloqueos_falsos_positivos": 0,
+    "bloqueos_ip_activos_post_partido": 0,
+    "reclamos": 0,
+    "reclamos_resueltos_por_levantamiento": 0,
+    "ordenes_firmadas_fuera_de_turno": 0
+  },
+  "fases": [
+    {
+      "stream": "pelotaya",
+      "fase": 1,
+      "ip": "203.0.113.10",
+      "host": "s1.pelotaya.test",
+      "desde_min": 2.0,
+      "hasta_min": 36.0,
+      "bloqueo_recomendado": "ip",
+      "primer_bloqueo_min": 0.92,
+      "proveedores_que_bloquearon": [
+        "andina",
+        "aurora",
+        "cumbre",
+        "valle"
+      ],
+      "clientes_cubiertos_pct": 100.0,
+      "visibilidad_residual_pct": 4.3
+    },
+    {
+      "stream": "pelotaya",
+      "fase": 2,
+      "ip": "203.0.113.11",
+      "host": "s2.pelotaya.test",
+      "desde_min": 37.5,
+      "hasta_min": 70.0,
+      "bloqueo_recomendado": "ip",
+      "primer_bloqueo_min": 1.0,
+      "proveedores_que_bloquearon": [
+        "andina",
+        "aurora",
+        "cumbre",
+        "valle"
+      ],
+      "clientes_cubiertos_pct": 100.0,
+      "visibilidad_residual_pct": 5.2
+    },
+    {
+      "stream": "pelotaya",
+      "fase": 3,
+      "ip": "198.51.100.77",
+      "host": "s3.pelotaya.test",
+      "desde_min": 71.0,
+      "hasta_min": 105.0,
+      "bloqueo_recomendado": "ip",
+      "primer_bloqueo_min": 0.84,
+      "proveedores_que_bloquearon": [
+        "andina",
+        "aurora",
+        "cumbre",
+        "valle"
+      ],
+      "clientes_cubiertos_pct": 100.0,
+      "visibilidad_residual_pct": 4.0
+    },
+    {
+      "stream": "golazo-cdn",
+      "fase": 1,
+      "ip": "198.51.100.20",
+      "host": "live.golazo-libre.test",
+      "desde_min": 6.0,
+      "hasta_min": 105.0,
+      "bloqueo_recomendado": "dominio",
+      "primer_bloqueo_min": 0.66,
+      "proveedores_que_bloquearon": [
+        "andina",
+        "aurora",
+        "cumbre",
+        "valle"
+      ],
+      "clientes_cubiertos_pct": 100.0,
+      "visibilidad_residual_pct": 1.3
+    },
+    {
+      "stream": "verpartido",
+      "fase": 1,
+      "ip": "192.0.2.50",
+      "host": "tv.verpartido-hd.test",
+      "desde_min": 9.0,
+      "hasta_min": 105.0,
+      "bloqueo_recomendado": "dominio",
+      "primer_bloqueo_min": 0.74,
+      "proveedores_que_bloquearon": [
+        "andina",
+        "aurora",
+        "cumbre",
+        "valle"
+      ],
+      "clientes_cubiertos_pct": 100.0,
+      "visibilidad_residual_pct": 1.5
+    },
+    {
+      "stream": "tribuna",
+      "fase": 1,
+      "ip": "203.0.113.40",
+      "host": "x9.tribuna-pirata.test",
+      "desde_min": 55.0,
+      "hasta_min": 81.0,
+      "bloqueo_recomendado": "ip",
+      "primer_bloqueo_min": 0.74,
+      "proveedores_que_bloquearon": [
+        "andina",
+        "aurora",
+        "cumbre",
+        "valle"
+      ],
+      "clientes_cubiertos_pct": 100.0,
+      "visibilidad_residual_pct": 4.7
+    },
+    {
+      "stream": "tribuna",
+      "fase": 2,
+      "ip": "203.0.113.41",
+      "host": "x10.tribuna-pirata.test",
+      "desde_min": 82.0,
+      "hasta_min": 105.0,
+      "bloqueo_recomendado": "ip",
+      "primer_bloqueo_min": 0.65,
+      "proveedores_que_bloquearon": [
+        "andina",
+        "aurora",
+        "cumbre",
+        "valle"
+      ],
+      "clientes_cubiertos_pct": 100.0,
+      "visibilidad_residual_pct": 6.1
+    }
+  ],
+  "dano_colateral": [],
+  "falsos_positivos": [],
+  "post_partido": {
+    "ip": [],
+    "dominio": []
+  },
+  "reclamos": []
+}

@@ -1,0 +1,69 @@
+{
+  "expediente_id": "EXP-2026-0001",
+  "deteccion_id": "D-0001",
+  "fase": 1,
+  "estado": "EVIDENCIA_VALIDADA",
+  "evidencia": {
+    "marca_de_agua": "LP26-PRA-OFI-S048211",
+    "marca_validada": true,
+    "prefijo_verificado": "LP26-PRA-OFI",
+    "origen_senal": "Señal oficial del titular (plataforma propia)",
+    "captura": {
+      "minuto": 2.0,
+      "formato": "mpegts",
+      "duracion_seg": 6,
+      "sha256_b64": "4063d4976a25164a7462c976378896beb8664b1e1e694e6c9ca8beb79306acef",
+      "sha256_binario": "77b14ea8874ef8bbbf99cc292fd820a9e8df09fa4d4c00ebaeb9003e6b9bfbe1",
+      "bytes": "64"
+    },
+    "sellos_de_tiempo": {
+      "deteccion_min": 2.0,
+      "procesado_min": 2.3
+    },
+    "promocion": [
+      {
+        "red": "x",
+        "url": "https://x.example/futbolya_ok/status/1001",
+        "minuto": 1.0
+      }
+    ]
+  },
+  "servidor": {
+    "host_stream": "s1.pelotaya.test",
+    "ip": "203.0.113.10",
+    "asn": 64600,
+    "organizacion": "Bruma Hosting Dedicado (ficticio)",
+    "dominios_en_ip": [
+      "s1.pelotaya.test",
+      "s1-respaldo.pelotaya.test"
+    ]
+  },
+  "riesgo_colateral": {
+    "nivel": "BAJO",
+    "ip_compartida": false,
+    "dominios_ajenos": [],
+    "justificacion": "La IP 203.0.113.10 está dedicada a la infraestructura del pirata (s1.pelotaya.test, s1-respaldo.pelotaya.test). El bloqueo por IP es seguro y más efectivo."
+  },
+  "orden_solicitada": {
+    "tipo": "ip",
+    "objetivo": "203.0.113.10",
+    "vence_min": 105
+  },
+  "juez": {
+    "juez_id": "jueza-laura-ficticia",
+    "nombre": "Dra. Laura Ficticia",
+    "juzgado_id": "jg-centro-3",
+    "juzgado": "Juzgado de Garantías N.º 3 (ficticio) — Distrito Judicial Centro",
+    "minuto_turno": 2.3
+  },
+  "cadena_de_custodia": {
+    "hash_expediente": "4c1898383547923f91763d76acd85b66487e516cda8ba4331e87b6c594fa8dd1",
+    "politica": "cada evento del ledger encadena el SHA-256 del evento anterior"
+  },
+  "detecciones": [
+    "D-0001",
+    "D-0005",
+    "D-0009",
+    "D-0012"
+  ]
+}
