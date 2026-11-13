@@ -108,7 +108,7 @@ bloqueos IP activos post-partido . 0
 
 **Reanudación tras reinicio (probada).** El motor reconstruye su estado desde el ledger de auditoría encadenado si se relanza con `--reanudar`: no trunca el ledger, no repite detecciones ni emite órdenes de más. Prueba real contra el escenario de práctica: corrida detenida en el minuto 40 y relanzada sobre el mismo simulador en marcha → **0 expedientes duplicados, 0 órdenes repetidas, 31 órdenes en total, ledger íntegro (136 eventos verificados por SHA-256)**. Es una parada limpia y relanzamiento, no un SIGKILL del proceso: se documenta así y no se presenta como más que eso. El camino oficial de la entrega (`python scripts/correr_partido_completo.py`) no cambia: el flag es opt-in y la reconstrucción marca los expedientes como `reconstruido_reanudacion: true`.
 
-**Reclamo resuelto con firma judicial (demo forzada).** Se forzó un bloqueo por IP sobre un hosting compartido que arrastraba a un sitio legítimo; el sistema levantó la orden con firma del juez de turno y la reemplazó por un bloqueo por dominio (`salida/demo_reclamo.json`). Leé el caso completo: <https://fernandofarfan.github.io/themis-live/reclamo.html>
+**Reclamo resuelto con firma judicial (demo forzada).** Se forzó un bloqueo por IP sobre un hosting compartido que arrastraba a un sitio legítimo; el sistema levantó la orden con firma del juez de turno y la reemplazó por un bloqueo por dominio (`entrega/demo_reclamo.json`, generado por `scripts/demo_reclamo.py`). Leé el caso completo: <https://fernandofarfan.github.io/themis-live/reclamo.html>
 
 ## Estado de entrega
 

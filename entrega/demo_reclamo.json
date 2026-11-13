@@ -1,0 +1,448 @@
+{
+  "proyecto": "THEMIS-LIVE · demo de reclamo",
+  "descripcion": "Se fuerza un bloqueo por IP sobre un hosting compartido; el sitio legítimo reclama y THEMIS-LIVE levanta la orden con firma judicial y la reemplaza por un bloqueo por dominio.",
+  "expediente": "EXP-2026-0002",
+  "reclamos": [
+    {
+      "id": "R-001",
+      "dominio": "noticias-del-valle.test",
+      "proveedor": "aurora",
+      "orden_id": "demo-error-ip-01",
+      "minuto": 9.667,
+      "mensaje": "Noticias del Valle: el diario no carga para lectores de varios proveedores.",
+      "estado": "levantada y reemplazada"
+    }
+  ],
+  "eventos_reclamo": [
+    {
+      "seq": 2,
+      "timestamp_iso": "2026-11-10T23:58:03.148956+00:00",
+      "minuto_partido": 2.13,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "aurora",
+        "orden_id": "ord-0001-aurora",
+        "expediente_id": "EXP-2026-0001",
+        "tipo": "ip",
+        "objetivo": "203.0.113.10",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "2220d374702b025335342312a652c6c8b74edaa3a9fc60fcdea4c34ff8d8953e",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "4c1898383547923f91763d76acd85b66487e516cda8ba4331e87b6c594fa8dd1"
+      },
+      "prev_hash": "0201dd26b385eaf34d27cbc4565a22d06bf5a11dfe4c82b555fb7e02df6a206f",
+      "hash": "897f4f417e40de57a7965e54e711bda886ace5751c8a7f678f00317cafd1ccdd"
+    },
+    {
+      "seq": 3,
+      "timestamp_iso": "2026-11-10T23:58:03.157662+00:00",
+      "minuto_partido": 2.13,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "andina",
+        "orden_id": "ord-0001-andina",
+        "expediente_id": "EXP-2026-0001",
+        "tipo": "ip",
+        "objetivo": "203.0.113.10",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "4d1f7c3bc518efc088cbeebfd2431ba7bdc053735620f3934fd1d6fe243e59d9",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "4c1898383547923f91763d76acd85b66487e516cda8ba4331e87b6c594fa8dd1"
+      },
+      "prev_hash": "897f4f417e40de57a7965e54e711bda886ace5751c8a7f678f00317cafd1ccdd",
+      "hash": "5ed1ec66e1d0fc00e966114a527b7df663875f87aaa3acb56264999804e43fbc"
+    },
+    {
+      "seq": 4,
+      "timestamp_iso": "2026-11-10T23:58:03.179791+00:00",
+      "minuto_partido": 2.13,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "valle",
+        "orden_id": "ord-0001-valle",
+        "expediente_id": "EXP-2026-0001",
+        "tipo": "dominio",
+        "objetivo": "s1.pelotaya.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "3910474c3337b3924b9d79114b209ee92117db6ddd153c5a2da4652ad5e6f95e",
+        "adaptacion_capacidades": "valle no aplica bloqueos por IP; se adapta a dominio",
+        "hash_expediente": "4c1898383547923f91763d76acd85b66487e516cda8ba4331e87b6c594fa8dd1"
+      },
+      "prev_hash": "5ed1ec66e1d0fc00e966114a527b7df663875f87aaa3acb56264999804e43fbc",
+      "hash": "3b8b33eedb4faec3b04e1a776748005336f0c170357d5f00492a726ab35002e5"
+    },
+    {
+      "seq": 5,
+      "timestamp_iso": "2026-11-10T23:58:03.212244+00:00",
+      "minuto_partido": 2.13,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "cumbre",
+        "orden_id": "ord-0001-cumbre",
+        "expediente_id": "EXP-2026-0001",
+        "tipo": "ip",
+        "objetivo": "203.0.113.10",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "aecfa0871b39871188114b3db92dd6c490db6b6adf6b9e7b03f6648a309715b5",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "4c1898383547923f91763d76acd85b66487e516cda8ba4331e87b6c594fa8dd1"
+      },
+      "prev_hash": "3b8b33eedb4faec3b04e1a776748005336f0c170357d5f00492a726ab35002e5",
+      "hash": "a93cb0523c7d80cf86c67de9fa7d22bf4f304900333a3d0b01891d310a531619"
+    },
+    {
+      "seq": 7,
+      "timestamp_iso": "2026-11-10T23:58:06.009808+00:00",
+      "minuto_partido": 4.07,
+      "evento": "deteccion_descartada",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "deteccion_id": "D-0002",
+        "motivo": "licenciatario_autorizado",
+        "marca": "LP26-PRA-LIC-NORTE",
+        "host": "envivo.canalnorte.test",
+        "licenciatario": "Canal Norte TV (ficticio)",
+        "detalle": "Transmisión legal en dominio autorizado; no se genera orden."
+      },
+      "prev_hash": "a3ba04d550fba390b9de6b3381d71aa4e9bfe708b276d28d79eac1e67db6163d",
+      "hash": "1513d4ebf8b555128a43ec53d959d7603b67231679c34bb976f0144e282b1198"
+    },
+    {
+      "seq": 11,
+      "timestamp_iso": "2026-11-10T23:58:09.020394+00:00",
+      "minuto_partido": 6.03,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "aurora",
+        "orden_id": "ord-0002-aurora",
+        "expediente_id": "EXP-2026-0002",
+        "tipo": "dominio",
+        "objetivo": "live.golazo-libre.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "40fc2d920ffea4abddfed7e521a6d8696eeb76688ebd9705d6bf05eb08587976",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "804d034bc5ce2f2c3c69ee49e477d90b7c5110393083345763331c65f405a50e"
+      },
+      "prev_hash": "a67b1560a5db4e12e8ad4a26fa9460539f365f2ac785b160a29faab76ee945f0",
+      "hash": "4c3a852fda94494dba069b9d2ab8d5b0af1936e501486c6a30cc4ec5f2b5e4cc"
+    },
+    {
+      "seq": 12,
+      "timestamp_iso": "2026-11-10T23:58:09.026918+00:00",
+      "minuto_partido": 6.03,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "andina",
+        "orden_id": "ord-0002-andina",
+        "expediente_id": "EXP-2026-0002",
+        "tipo": "dominio",
+        "objetivo": "live.golazo-libre.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "7876a206da85dbac03bd6b91651562c274b53836386bb6e9ee8f63e9e3ef8393",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "804d034bc5ce2f2c3c69ee49e477d90b7c5110393083345763331c65f405a50e"
+      },
+      "prev_hash": "4c3a852fda94494dba069b9d2ab8d5b0af1936e501486c6a30cc4ec5f2b5e4cc",
+      "hash": "acb96b049da432673fd88a96eddbaa44996ca0f234d7613a10a9d56154d7296f"
+    },
+    {
+      "seq": 13,
+      "timestamp_iso": "2026-11-10T23:58:09.030568+00:00",
+      "minuto_partido": 6.03,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "valle",
+        "orden_id": "ord-0002-valle",
+        "expediente_id": "EXP-2026-0002",
+        "tipo": "dominio",
+        "objetivo": "live.golazo-libre.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "1afa92c1473a7e71400d343c945309a0cbf42cbb19ce827a0c7cbc92651b7765",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "804d034bc5ce2f2c3c69ee49e477d90b7c5110393083345763331c65f405a50e"
+      },
+      "prev_hash": "acb96b049da432673fd88a96eddbaa44996ca0f234d7613a10a9d56154d7296f",
+      "hash": "e560cf33c93bc364a610e8a7dc55d3edf14edacc41cc4056ee1a4168f07a799c"
+    },
+    {
+      "seq": 14,
+      "timestamp_iso": "2026-11-10T23:58:09.052328+00:00",
+      "minuto_partido": 6.03,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "cumbre",
+        "orden_id": "ord-0002-cumbre",
+        "expediente_id": "EXP-2026-0002",
+        "tipo": "dominio",
+        "objetivo": "live.golazo-libre.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "a52184a9f03129b61c446c9fc5b3da24b6bdc77243c1a2356c799777dce76ab3",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "804d034bc5ce2f2c3c69ee49e477d90b7c5110393083345763331c65f405a50e"
+      },
+      "prev_hash": "e560cf33c93bc364a610e8a7dc55d3edf14edacc41cc4056ee1a4168f07a799c",
+      "hash": "e51b05df056a9c267d7dabaaaa4f1428e4d93458790ef788d505bfb23b9a5a01"
+    },
+    {
+      "seq": 20,
+      "timestamp_iso": "2026-11-10T23:58:13.642246+00:00",
+      "minuto_partido": 9.13,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "aurora",
+        "orden_id": "ord-0003-aurora",
+        "expediente_id": "EXP-2026-0003",
+        "tipo": "dominio",
+        "objetivo": "tv.verpartido-hd.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "a82e7aa7f9b8996390e8e15a7fbdcf0d66239f8a03602003f0068cfb8344b78e",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "8aa2faba62c44c0fabc90e5300cef333f390d26b0533e4f679ef2dfe29985782"
+      },
+      "prev_hash": "91b2a904e184692ef9c30a217732af482830841d69c52996a76cd23c8adf5efa",
+      "hash": "3bc79de53c348fe2fbc7589a8ab694e2d44dea0552c2e3a1ca0d4d0e8bc8e979"
+    },
+    {
+      "seq": 21,
+      "timestamp_iso": "2026-11-10T23:58:13.672760+00:00",
+      "minuto_partido": 9.13,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "andina",
+        "orden_id": "ord-0003-andina",
+        "expediente_id": "EXP-2026-0003",
+        "tipo": "dominio",
+        "objetivo": "tv.verpartido-hd.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "d56b597bf13aee898dcfbd15594b474e661e68c2d24c24c1507577faa34a8e85",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "8aa2faba62c44c0fabc90e5300cef333f390d26b0533e4f679ef2dfe29985782"
+      },
+      "prev_hash": "3bc79de53c348fe2fbc7589a8ab694e2d44dea0552c2e3a1ca0d4d0e8bc8e979",
+      "hash": "9507f828f469c16b7a3e43bf3afb3119aff2d62e2fa3682424a263da6a6472f5"
+    },
+    {
+      "seq": 22,
+      "timestamp_iso": "2026-11-10T23:58:13.677066+00:00",
+      "minuto_partido": 9.13,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "valle",
+        "orden_id": "ord-0003-valle",
+        "expediente_id": "EXP-2026-0003",
+        "tipo": "dominio",
+        "objetivo": "tv.verpartido-hd.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "a2bd063b971caddb8a6dd02b3cbb59a3f0fbaedb31d3a89f72ad668914897035",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "8aa2faba62c44c0fabc90e5300cef333f390d26b0533e4f679ef2dfe29985782"
+      },
+      "prev_hash": "9507f828f469c16b7a3e43bf3afb3119aff2d62e2fa3682424a263da6a6472f5",
+      "hash": "2bf1b94a95d02f2c6130e0a10847281e50c6ffe3933edca2dd1876d37a8fc45c"
+    },
+    {
+      "seq": 23,
+      "timestamp_iso": "2026-11-10T23:58:13.715900+00:00",
+      "minuto_partido": 9.13,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "cumbre",
+        "orden_id": "ord-0003-cumbre",
+        "expediente_id": "EXP-2026-0003",
+        "tipo": "dominio",
+        "objetivo": "tv.verpartido-hd.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "c2cd5b7c7852ddb3b36692dd7a784b60ba3a171f2a323b348368d849dac5f259",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "8aa2faba62c44c0fabc90e5300cef333f390d26b0533e4f679ef2dfe29985782"
+      },
+      "prev_hash": "2bf1b94a95d02f2c6130e0a10847281e50c6ffe3933edca2dd1876d37a8fc45c",
+      "hash": "6972912c78b206edb05c74423b225d0cb449f7bd7a4193ac9f62c87cd760f64c"
+    },
+    {
+      "seq": 26,
+      "timestamp_iso": "2026-11-10T23:58:14.506576+00:00",
+      "minuto_partido": 9.69,
+      "evento": "reclamo_resuelto",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "reclamo_id": "R-001",
+        "dominio": "noticias-del-valle.test",
+        "proveedor": "aurora",
+        "orden_levantada": "demo-error-ip-01",
+        "juez_id": "jueza-laura-ficticia",
+        "firma_levantamiento": "88d8fc1dc7496ebd32df1170a52a4d4ca0bbf69dac35cf3c802fbbee4e186856",
+        "accion": "levantamiento firmado + bloqueo quirúrgico por dominio"
+      },
+      "prev_hash": "f068758424e6b6469fa8569bf8f250d0638e00a953db9a82a945294ccbfa7c9f",
+      "hash": "d15572a7a21335667b37624e3aa27d8650b2dd27737afc22205df5dcef3c8ded"
+    },
+    {
+      "seq": 27,
+      "timestamp_iso": "2026-11-10T23:58:14.538424+00:00",
+      "minuto_partido": 9.69,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "aurora",
+        "orden_id": "ord-0002-aurora-precisa",
+        "expediente_id": "EXP-2026-0002",
+        "tipo": "dominio",
+        "objetivo": "live.golazo-libre.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "7f331ecd487b8fb44bc8c0bdd8a80f3cae644ec9f61438849e2d69f8cd1a71a6",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "804d034bc5ce2f2c3c69ee49e477d90b7c5110393083345763331c65f405a50e"
+      },
+      "prev_hash": "d15572a7a21335667b37624e3aa27d8650b2dd27737afc22205df5dcef3c8ded",
+      "hash": "e45c994c433d7c10b7ac0b50e5bd4493a451e3a6abf19ad5aaeb80ce1fcc9eaa"
+    },
+    {
+      "seq": 28,
+      "timestamp_iso": "2026-11-10T23:58:14.543064+00:00",
+      "minuto_partido": 9.69,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "andina",
+        "orden_id": "ord-0002-andina-precisa",
+        "expediente_id": "EXP-2026-0002",
+        "tipo": "dominio",
+        "objetivo": "live.golazo-libre.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "85257adc643eab96ef2998702e587455b4a2ac1e4b2d8758934024881e354736",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "804d034bc5ce2f2c3c69ee49e477d90b7c5110393083345763331c65f405a50e"
+      },
+      "prev_hash": "e45c994c433d7c10b7ac0b50e5bd4493a451e3a6abf19ad5aaeb80ce1fcc9eaa",
+      "hash": "59ab9bbaa5bb96c3e29e93efedb5d15ba29b6d689b4eddea3d0b79223bf50088"
+    },
+    {
+      "seq": 29,
+      "timestamp_iso": "2026-11-10T23:58:14.566332+00:00",
+      "minuto_partido": 9.69,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "valle",
+        "orden_id": "ord-0002-valle-precisa",
+        "expediente_id": "EXP-2026-0002",
+        "tipo": "dominio",
+        "objetivo": "live.golazo-libre.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "d840d0bfa0daf533858a35f049665a4c0ac96f779f607a0ba147c4c2bba3687b",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "804d034bc5ce2f2c3c69ee49e477d90b7c5110393083345763331c65f405a50e"
+      },
+      "prev_hash": "59ab9bbaa5bb96c3e29e93efedb5d15ba29b6d689b4eddea3d0b79223bf50088",
+      "hash": "c16ef8a83ab411174280d5cc1362be0172b7c0feeab684bc67dec064ba561cfd"
+    },
+    {
+      "seq": 30,
+      "timestamp_iso": "2026-11-10T23:58:14.580557+00:00",
+      "minuto_partido": 9.69,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "cumbre",
+        "orden_id": "ord-0002-cumbre-precisa",
+        "expediente_id": "EXP-2026-0002",
+        "tipo": "dominio",
+        "objetivo": "live.golazo-libre.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "857c9582b15f8a8d91ff6e9b9e85064f06dd107638c8117ec9421172c552e52a",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "804d034bc5ce2f2c3c69ee49e477d90b7c5110393083345763331c65f405a50e"
+      },
+      "prev_hash": "c16ef8a83ab411174280d5cc1362be0172b7c0feeab684bc67dec064ba561cfd",
+      "hash": "d7c60ed91e9d184a4dedea135f3f04977415783249ec3f6682cdf65409af4419"
+    },
+    {
+      "seq": 36,
+      "timestamp_iso": "2026-11-10T23:58:17.969505+00:00",
+      "minuto_partido": 12.0,
+      "evento": "orden_emitida",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "proveedor": "cumbre",
+        "orden_id": "ord-0003-cumbre-r1",
+        "expediente_id": "EXP-2026-0003",
+        "tipo": "dominio",
+        "objetivo": "tv.verpartido-hd.test",
+        "vence_min": 105,
+        "juez_id": "jueza-laura-ficticia",
+        "juzgado_id": "jg-centro-3",
+        "firma_hmac": "3bf7d6d7ac0165c9c04b923cb6ef31f46b7ac8833aef32426e7982f7d27243b0",
+        "adaptacion_capacidades": "",
+        "hash_expediente": "8aa2faba62c44c0fabc90e5300cef333f390d26b0533e4f679ef2dfe29985782"
+      },
+      "prev_hash": "6e9244ab196aeb404effb5e96299b09fba055bd839802c81f462d103abe087cc",
+      "hash": "4c16937ae8aa439ca0ccb7a4a056fe9c2d582ecbee22c697369cfc1f6a533862"
+    },
+    {
+      "seq": 44,
+      "timestamp_iso": "2026-11-10T23:58:29.936916+00:00",
+      "minuto_partido": 20.01,
+      "evento": "deteccion_descartada",
+      "operador": "THEMIS-LIVE",
+      "datos": {
+        "deteccion_id": "D-0008",
+        "motivo": "marca_de_agua_ajena_al_partido",
+        "marca": "LP25-F03-OFI-S102934",
+        "host": "vod.resumenes-deportivos.test",
+        "detalle": "Evidencia no corresponde a la señal oficial; no se genera orden."
+      },
+      "prev_hash": "165c7c4cc4dfa57ecb8228de0937316fe632de1e06365d9272d44d715e95b3e3",
+      "hash": "5fa36bd8032c049695c0d7d28a45faca262e4c9d3f5c2d36e073feb09e67d174"
+    }
+  ],
+  "integridad_ledger": {
+    "integro": true,
+    "eventos": 45,
+    "ultimo_hash": "edf740226b81e187c508cea9afe50cc79a05279c667c47071ea8bd0d3b7965e0"
+  }
+}
